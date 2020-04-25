@@ -30,7 +30,7 @@ kwargs = {
     'maintainer': 'Asteroide',
     'maintainer_email': 'dt_github@domtombox.net',
     'url': 'https://github.com/_/attgen',
-    'license': 'MIT/Apache-2.0',
+    'license': 'Apache-2.0',
     'classifiers': [
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
