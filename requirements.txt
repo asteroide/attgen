@@ -1,0 +1,4 @@
+-e .
+qrcode
+pdfrw
+reportlab
