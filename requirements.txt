@@ -2,3 +2,4 @@
 qrcode
 pdfrw
 reportlab
+pyaml

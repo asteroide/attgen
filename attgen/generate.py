@@ -89,14 +89,33 @@ def generate_qrcode(item):
     c.save()
     return qrcode_filename
 
-def main():
+def set_conf(config, time):
+    global global_data, data, inputs, hour, minute
+    if config:
+        global_data = config.global_data
+        data = config.data
+        inputs = config.inputs
+    if time:
+        try:
+            _time = []
+            if "h" in time:
+                _time = time.split("h")
+            elif ":" in time:
+                _time = time.split("h")
+            hour = f"{int(_time[0]):02}"
+            minute = f"{int(_time[1]):02}"
+        except IndexError:
+            pass
+
+def main(config=None, time=None, out=None):
+    set_conf(config, time)
     for person in data:
         generate_overlay(person)
         merge_pdfs(inputs,
                    tmp_dir + f'simple_form_overlay_{person["firstname"]}.pdf',
                    tmp_dir + f'merged_form_{person["firstname"]}.pdf')
     pages = []
-    writer = PdfWriter("merged.pdf")
+    writer = PdfWriter(out)
     for person in data:
         _pages = pdfrw.PdfReader(tmp_dir + f'merged_form_{person["firstname"]}.pdf')
         qrpdf = pdfrw.PdfReader(tmp_dir + f"qrcode_{person['firstname']}.pdf")
