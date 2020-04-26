@@ -61,6 +61,18 @@ The configuration file is a yaml file:
 
     inputs: /tmp/certificate.pdf
 
+This Config file can be also put in the Home directory under ${HOME}/.attgen
+and will be read at the beginning of the execution.
+
+Examples of usage:
+
+.. code-block:: bash
+
+    attgen
+    attgen -t 15:00
+    attgen -o /tmp/my_certificate.pdf
+    attgen -c my_config_file.yaml
+    attgen -c my_config_file.yaml -o /tmp/my_certificate.pdf -t 15:00
 
 License
 -------

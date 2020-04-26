@@ -1,3 +1,4 @@
+import os
 import argparse
 
 from . import generate
@@ -20,12 +21,18 @@ def init():
     args = parser.parse_args()
     return args
 
+def get_init_file():
+    filename = os.path.join(os.environ['HOME'], ".attgen")
+    try:
+        return read_yaml.config(filename)
+    except FileNotFoundError:
+        pass
+
 def run():
     args = init()
+    config = get_init_file()
     if args.conf:
-        config = read_yaml.config(args.conf)
-    else:
-        config = None
+        config.update(args.conf)
     pdf_reference.generate()
     generate.main(config, args.time, args.out)
 
